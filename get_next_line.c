@@ -14,12 +14,11 @@ char	*get_next_line(int fd)
 	buffer = malloc(1000);
 	line = malloc(1000);
 	read(fd, buffer, BUFFER_SIZE);
-		i = 0;
-		while (buffer[i] != '\n' && i <= BUFFER_SIZE)
-		{
-			i++;
-		}
-	strlcat(line, *start, i);
+	i = 0;
+	while (buffer[i] != '\0' && buffer[i] != '\n' && i <= BUFFER_SIZE)
+		i++;
+	buffer -= BUFFER_SIZE -1;
+	line = strncpy(line, buffer, i);
 	return (line);
 }
 
